@@ -41,9 +41,13 @@ const logout = () => {
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
+                            <div class="shrink-0 flex items-center mt-10">
                                 <Link :href="route('dashboard')">
-                                    <JetApplicationMark class="block h-9 w-auto" />
+                                    <!-- <JetApplicationMark class="block h-9 w-auto" /> -->
+                                    <div class="w-40 h-40 ">
+
+                                    <img src="/images/fcl_logo.png" alt="">
+                                    </div>
                                 </Link>
                             </div>
 

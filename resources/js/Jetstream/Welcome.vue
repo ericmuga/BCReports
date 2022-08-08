@@ -1,24 +1,67 @@
 <script setup>
-import JetApplicationLogo from '@/Jetstream/ApplicationLogo.vue';
+// import JetApplicationLogo from '@/Jetstream/ApplicationLogo.vue';
+import { useForm } from '@inertiajs/inertia-vue3';
+import InputText from 'primevue/inputtext';
+const items =[
+                {
+                    label: 'Update',
+                    icon: 'pi pi-refresh'
+                },
+                {
+                    label: 'Delete',
+                    icon: 'pi pi-times'
+                },
+                {
+                    label: 'Vue Website',
+                    icon: 'pi pi-external-link',
+                    command: () => {
+                        window.location.href = 'https://vuejs.org/'
+                    }
+                },
+                {   label: 'Upload',
+                    icon: 'pi pi-upload',
+                    command: () => {
+                        window.location.hash = "/fileupload"
+                    }
+                }
+            ]
+
+ const form=useForm({
+                  from:'',
+                  to:''
+ })
+
 </script>
 
 <template>
     <div>
         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
             <div>
-                <JetApplicationLogo class="block h-12 w-auto" />
+                <!-- <JetApplicationLogo class="block h-12 w-auto" /> -->
+               <!-- <img src="/images/fcl_logo.png" alt=""> -->
+
             </div>
 
             <div class="mt-8 text-2xl">
-                Welcome to your Jetstream application!
+                   Lets talk Sales..
             </div>
 
-            <div class="mt-6 text-gray-500">
-                Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
-                to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
-                you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
-                ecosystem to be a breath of fresh air. We hope you love it.
-            </div>
+            <!-- <div class="mt-6 text-gray-500">
+                <Toolbar>
+                    <template #start>
+                        <Button label="New" icon="pi pi-plus" class="mr-2" />
+                         <Button label="Upload" icon="pi pi-upload" class="p-button-success" />
+                        <i class="pi pi-bars p-toolbar-separator mr-2" />
+                        <SplitButton label="Save" icon="pi pi-check" :model="items" class="p-button-warning"></SplitButton>
+                    </template>
+
+                    <template #end>
+                        <Button icon="pi pi-search" class="mr-2" />
+                        <Button icon="pi pi-calendar" class="p-button-success mr-2" />
+                        <Button icon="pi pi-times" class="p-button-danger" />
+                    </template>
+                </Toolbar>
+            </div> -->
         </div>
 
         <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
@@ -34,13 +77,17 @@ import JetApplicationLogo from '@/Jetstream/ApplicationLogo.vue';
                         class="w-8 h-8 text-gray-400"
                     ><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
                     <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
-                        <a href="https://laravel.com/docs">Documentation</a>
+                        <a href="https://laravel.com/docs">Week to Date sales</a>
                     </div>
                 </div>
 
                 <div class="ml-12">
                     <div class="mt-2 text-sm text-gray-500">
-                        Laravel has wonderful documentation covering every aspect of the framework. Whether you're new to the framework or have previous experience, we recommend reading all of the documentation from beginning to end.
+                        <form action="" @submit.prevent="form.post('/data')">
+                         <InputText type="date" class="p-inputtext-sm" placeholder="From" v-model="form.from" />
+                         <InputText type="date" class="p-inputtext-sm" placeholder="To"  v-model="form.to"/>
+                         <Button type="submit" >GO!</Button>
+                        </form>
                     </div>
 
                     <a href="https://laravel.com/docs">
